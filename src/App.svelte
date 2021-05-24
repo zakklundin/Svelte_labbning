@@ -6,13 +6,16 @@ import { insert } from "svelte/internal";
 	let resultNumber = 0
 	let selected = 'Choose below'
 	let selected2 = 'Choose below'
+	let cubicM = false
+	let squareM = false
+	let litre = false
 
 	function insertButton(div, name, text, multiplier){
 		name = document.createElement("button")
 		name.innerHTML = text
 		name.onclick = function(){
 			resultNumber = inputNumber * multiplier
-			selected2 = name
+			selected2 = text
 		}
 		div.appendChild(name)
 	}
@@ -21,7 +24,7 @@ import { insert } from "svelte/internal";
 		cubicM = true
 		squareM = false
 		litre = false
-		selected = 'Cubic meter(s)'
+		selected = 'Cubic meters'
 		let toUnit = document.getElementById("toUnit")
 		toUnit.innerHTML = ""
 		let btn1 = "toCubicCM"
@@ -35,7 +38,7 @@ import { insert } from "svelte/internal";
 		squareM = true
 		cubicM = false
 		litre = false
-		selected = 'Square meter(s)'
+		selected = 'Square meters'
 		let toUnit = document.getElementById("toUnit")
 		toUnit.innerHTML = ""
 		let btn1 = "toSqCM"
@@ -47,7 +50,7 @@ import { insert } from "svelte/internal";
 		litre = true
 		squareM = false
 		cubicM = false
-		selected = 'Litre(s)'
+		selected = 'Litres'
 		let toUnit = document.getElementById("toUnit")
 		toUnit.innerHTML = ""
 		let btn1 = "toCubicCM"
@@ -124,7 +127,7 @@ import { insert } from "svelte/internal";
 	<div id="toUnit">
 
 	</div>
-	
+
 	<p>Result: {resultNumber}</p>
 </main>
 
