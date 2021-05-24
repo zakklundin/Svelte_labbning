@@ -6,110 +6,63 @@ import { insert } from "svelte/internal";
 	let resultNumber = 0
 	let selected = 'Choose below'
 	let selected2 = 'Choose below'
-	let cubicM = false
-	let squareM = false
-	let litre = false
 
-	function insertButton(div, name, text, multiplier){
-		name = document.createElement("button")
-		name.innerHTML = text
-		name.onclick = function(){
+	function insertButton(div, btn, text, multiplier){
+		btn = document.createElement("button")
+		btn.innerHTML = text
+
+		btn.style.backgroundColor= "#f44336"
+  		btn.style.border = "none"
+  		btn.style.color = "white"
+  		btn.style.padding = "15px 32px"
+  		btn.style.alignContent = "center"
+  		btn.style.textDecoration = "none"
+  		btn.style.display= "inline-block"
+  		btn.style.fontSize = "16 px"
+
+		btn.onclick = function(){
 			resultNumber = inputNumber * multiplier
 			selected2 = text
 		}
-		div.appendChild(name)
+		div.appendChild(btn)
 	}
 
 	function fromCubM(){
-		cubicM = true
-		squareM = false
-		litre = false
 		selected = 'Cubic meters'
 		let toUnit = document.getElementById("toUnit")
 		toUnit.innerHTML = ""
 		let btn1 = "toCubicCM"
 		let btn2 = "toLitre"
 		let btn3 = "toCubicMM"
+		let btn4 = "tomLitre"
 		insertButton(toUnit, btn1, "Cubic Centimeters", 1000000)
 		insertButton(toUnit, btn2, "Litres", 1000)
 		insertButton(toUnit, btn3, "Cubic Millimeters", 1000000000)
+		insertButton(toUnit, btn4, "Millilitres", 1000000)
 	}
 	function fromSqM(){
-		squareM = true
-		cubicM = false
-		litre = false
 		selected = 'Square meters'
 		let toUnit = document.getElementById("toUnit")
 		toUnit.innerHTML = ""
 		let btn1 = "toSqCM"
 		let btn2 = "toHA"
+		let btn3 = "toSqF"
 		insertButton(toUnit, btn1, "Square Centimeters", 10000)
 		insertButton(toUnit, btn2, "Hectares", 0.0001)
+		insertButton(toUnit, btn3, "Square Feet", 0.00107639104)
 	}
 	function fromLitre(){
-		litre = true
-		squareM = false
-		cubicM = false
 		selected = 'Litres'
 		let toUnit = document.getElementById("toUnit")
 		toUnit.innerHTML = ""
 		let btn1 = "toCubicCM"
-		let btn2 = "toLitre"
+		let btn2 = "toCubicM"
 		let btn3 = "toCubicMM"
 		insertButton(toUnit, btn1, "Cubic Centimeters", 1000)
-		insertButton(toUnit, btn2, "Litres", 1)
+		insertButton(toUnit, btn2, "Cubic Meters", 0.001)
 		insertButton(toUnit, btn3, "Cubic Millimeters", 1000000)
 	}
-/*
-	function toSqCM(){
-		if (cubicM == true || litre == true) {
-			resultNumber = "ERROR, incompatible units"
-		} else if (squareM == true){
-			resultNumber = inputNumber * 1000
-		}
-		selected2 = 'Square Centimeter(s)'
-	}
 
-	function toCubCM(){
-		if (squareM == true){
-			resultNumber = "ERROR, incompatible units"
-		} else if (cubicM == true) {
-			resultNumber = inputNumber * 1000000
-		} else if (litre == true) {
-			resultNumber = inputNumber * 1000
-		}
-		selected2 = 'Cubic Centimeter(s)'
-	}
-
-	function toLitre() {
-		if (squareM == true){
-			resultNumber = "ERROR, incompatible units"
-		} else if (cubicM == true) {
-			resultNumber = inputNumber * 1000
-		} else if (litre == true) {
-			resultNumber = inputNumber
-		}
-		selected2 = 'Litre(s)'
-	}
-	function toHA(){
-		if (cubicM == true || litre == true){
-			resultNumber = "ERROR, incompatible units"
-		} else if (squareM == true) {
-			resultNumber = 10000 * inputNumber
-		}
-		selected2 = 'Hectare'
-	}
-	function toCubMM(){
-		if (squareM == true){
-			resultNumber = "ERROR, incompatible units"
-		} else if (cubicM == true){
-			resultNumber = inputNumber * 1000000000
-		} else if (litre == true){
-			resultNumber = inputNumber * 1000000
-		}
-		selected2 = "Cubic Millimeter(s)"
-	}
-*/
 </script>
 
 <main>
@@ -124,9 +77,7 @@ import { insert } from "svelte/internal";
 	
 	<p>To: {selected2}</p>
 
-	<div id="toUnit">
-
-	</div>
+	<div id="toUnit"></div>
 
 	<p>Result: {resultNumber}</p>
 </main>
@@ -144,6 +95,17 @@ import { insert } from "svelte/internal";
 		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
+	}
+
+	button {
+  		background-color: #f44336;
+  		border: none;
+  		color: white;
+  		padding: 15px 32px;
+  		text-align: center;
+  		text-decoration: none;
+  		display: inline-block;
+  		font-size: 16px;
 	}
 
 	@media (min-width: 640px) {
