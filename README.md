@@ -1,3 +1,3 @@
-# Unit Converter and Calculator using Svelte
+# Unit Converter and Calculator
 
-This is a web app I made that is used for converting input number in a selected unit to a different unit. Currently it is only certain volume and area units that can be converted, but it is made in a way where it is easy to add another unit if I feel like something is missing. It is also made so that you can't convert a number in an area unit to a volume unit and vice versa.
+This is a web app I made in Svelte that is used for converting input number in a selected unit to a different unit. Currently it is only certain volume and area units that can be converted, but it is made in a way where it is easy to add another unit if I feel like something is missing. It is also made so that you can't convert a number in an area unit to a volume unit and vice versa.
